@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coinoacademybackend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coinoacademybackend
+  template:
+    metadata:
+      labels:
+        app: coinoacademybackend
+    spec:
+      containers:
+      - name: coinoacademyacr
+        image: coinoacademyacr.azurecr.io/coinoacademybackend:v1
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+      imagePullSecrets:
+        - name: coino-registiry
